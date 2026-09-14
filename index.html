@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>For My Babu ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255, 70, 150, .15), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(130, 70, 255, .15), transparent 30%),
+        #08060d;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Stars */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,.7) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,180,220,.5) 1px, transparent 1px);
+    background-size: 90px 90px, 140px 140px;
+    background-position: 10px 20px, 50px 80px;
+    opacity: .35;
+    z-index: 0;
+}
+
+.screen {
+    position: relative;
+    z-index: 1;
+    min-height: 100svh;
+    width: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding:
+        max(25px, env(safe-area-inset-top))
+        20px
+        max(30px, env(safe-area-inset-bottom));
+    animation: fadeIn .7s ease;
+}
+
+.screen.active {
+    display: flex;
+}
+
+.content {
+    width: 100%;
+    max-width: 650px;
+    text-align: center;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Typography */
+
+.small {
+    font-size: clamp(11px, 3vw, 14px);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #eab6d0;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 15vw, 100px);
+    line-height: .95;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 10vw, 70px);
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: clamp(14px, 4vw, 17px);
+    line-height: 1.8;
+    color: #ddd4df;
+}
+
+/* Gradient text */
+
+.gradient {
+    background: linear-gradient(90deg, #ff9bc7, #fff, #caa8ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Buttons */
+
+.btn {
+    margin-top: 30px;
+    border: 1px solid rgba(255,255,255,.25);
+    background: rgba(255,255,255,.07);
+    color: white;
+    padding: 15px 28px;
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: .3s;
+    backdrop-filter: blur(10px);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn:hover {
+    background: rgba(255,120,180,.18);
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: scale(.96);
+}
+
+/* Opening */
+
+.heart {
+    font-size: 55px;
+    animation: heartbeat 1.5s infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+.quote {
+    margin: 25px auto;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 6vw, 32px);
+    line-height: 1.35;
+    color: #f5dbe8;
+}
+
+/* Photos */
+
+.photo {
+    width: 100%;
+    max-width: 430px;
+    margin: 20px auto;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.5),
+        0 0 40px rgba(255,80,160,.1);
+}
+
+.photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 65svh;
+    object-fit: cover;
+}
+
+/* Photo grid */
+
+.photo-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 25px auto;
+}
+
+.photo-grid img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+}
+
+/* Letter */
+
+.envelope-container {
+    perspective: 1000px;
+    margin: 30px auto;
+}
+
+.envelope {
+    position: relative;
+    width: min(90vw, 420px);
+    height: 250px;
+    margin: auto;
+    background: #b85c83;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    transition: .6s;
+}
+
+.envelope::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #d37ba0;
+    clip-path: polygon(0 0, 50% 55%, 100% 0);
+    border-radius: 8px;
+    transform-origin: top;
+    transition: .8s;
+    z-index: 3;
+}
+
+.envelope.open::before {
+    transform: rotateX(180deg);
+}
+
+.envelope-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 25px;
+    z-index: 2;
+}
+
+.letter {
+    position: absolute;
+    left: 5%;
+    width: 90%;
+    bottom: 0;
+    max-height: 210px;
+    overflow-y: auto;
+    background: #fff8fb;
+    color: #392632;
+    border-radius: 8px;
+    padding: 22px;
+    text-align: left;
+    line-height: 1.7;
+    font-size: 14px;
+    transform: translateY(0);
+    opacity: 0;
+    transition: 1s;
+    z-index: 1;
+}
+
+.envelope.open .letter {
+    opacity: 1;
+    transform: translateY(-80px);
+}
+
+/* Letter scrollbar */
+
+.letter::-webkit-scrollbar {
+    width: 4px;
+}
+
+.letter::-webkit-scrollbar-thumb {
+    background: #c77b9d;
+    border-radius: 10px;
+}
+
+/* Final */
+
+.final-heart {
+    font-size: 70px;
+    animation: heartbeat 1.4s infinite;
+    margin: 20px;
+}
+
+.signature {
+    margin-top: 25px;
+    color: #d9afc5;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+}
+
+/* Confetti */
+
+.confetti {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    top: -20px;
+    z-index: 20;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 480px) {
+
+    .screen {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    h1 {
+        font-size: 55px;
+    }
+
+    h2 {
+        font-size: 42px;
+    }
+
+    .photo-grid {
+        gap: 8px;
+    }
+
+    .photo-grid img {
+        border-radius: 12px;
+    }
+
+    .envelope {
+        height: 225px;
+    }
+
+    .letter {
+        font-size: 13px;
+        padding: 18px;
+    }
+
+    .envelope.open .letter {
+        transform: translateY(-70px);
+    }
+
+    .btn {
+        width: min(100%, 280px);
+        padding: 16px 20px;
+    }
+}
+
+/* Very small phones */
+
+@media (max-height: 650px) {
+
+    .screen {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .photo img {
+        max-height: 48svh;
+    }
+
+    .quote {
+        margin: 15px auto;
+    }
+
+    .btn {
+        margin-top: 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- SCREEN 1 -->
+
+<section class="screen active" id="screen1">
+
+    <div class="content">
+
+        <div class="heart">❤️</div>
+
+        <div class="small">
+            September 15 • A little secret
+        </div>
+
+        <h1 class="gradient">
+            For my<br>Babu
+        </h1>
+
+        <p>
+            I made something small for you...
+            but it carries a very big piece of my heart.
+        </p>
+
+        <button class="btn" onclick="nextScreen()">
+            Tap to unlock ✨
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- SCREEN 2 -->
+
+<section class="screen" id="screen2">
+
+    <div class="content">
+
+        <div class="small">
+            Four years
+        </div>
+
+        <h2>
+            And somehow...
+        </h2>
+
+        <div class="quote">
+            “Distance may separate two people,
+            but it can never measure how close
+            they are in each other's hearts.”
+        </div>
+
+        <p>
+            Four years of memories.<br>
+            Four years of conversations.<br>
+            Four years of choosing each other,
+            even when miles stood between us.
+        </p>
+
+        <button class="btn" onclick="nextScreen()">
+            Continue ❤️
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- SCREEN 3 -->
+
+<section class="screen" id="screen3">
+
+    <div class="content">
+
+        <div class="small">
+            One of my favourite memories
+        </div>
+
+        <div class="photo">
+            <img src="assets/memory2.jpeg"
+                 alt="Our memory">
+        </div>
+
+        <div class="quote">
+            “Some memories don't need words.
+            Looking at them is enough to make
+            your heart smile.”
+        </div>
+
+        <button class="btn" onclick="nextScreen()">
+            There is more...
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- SCREEN 4 -->
+
+<section class="screen" id="screen4">
+
+    <div class="content">
+
+        <div class="small">
+            Pieces of us
+        </div>
+
+        <h2>
+            Our little memories
+        </h2>
+
+        <div class="photo-grid">
+
+            <img src="assets/memory1.jpeg" alt="Memory 1">
+            <img src="assets/memory3.jpeg" alt="Memory 3">
+            <img src="assets/memory4.jpeg" alt="Memory 4">
+            <img src="assets/memory5.jpeg" alt="Memory 5">
+            <img src="assets/memory6.jpeg" alt="Memory 6">
+            <img src="assets/memory7.jpeg" alt="Memory 7">
+
+        </div>
+
+        <div class="quote">
+            “If I could keep only one thing from
+            these four years, I'd keep every little
+            moment that made me fall for you again.”
+        </div>
+
+        <button class="btn" onclick="nextScreen()">
+            I wrote something for you 💌
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- SCREEN 5 -->
+
+<section class="screen" id="screen5">
+
+    <div class="content">
+
+        <div class="small">
+            Open this slowly
+        </div>
+
+        <h2>
+            A letter for Babu
+        </h2>
+
+        <div class="envelope-container">
+
+            <div class="envelope" id="envelope"
+                 onclick="openLetter()">
+
+                <div class="envelope-text">
+                    💌 Tap to open
+                </div>
+
+                <div class="letter">
+
+                    <strong>Happy Birthday, my Babu. ❤️</strong>
+
+                    <br><br>
+
+                    Today is your special day,
+                    but somehow I feel like I'm the lucky one—
+                    because four years ago, I got someone
+                    who slowly became such a beautiful
+                    part of my life.
+
+                    <br><br>
+
+                    Four years...
+                    it sounds like just a number,
+                    but for me, it carries thousands
+                    of little memories.
+
+                    <br><br>
+
+                    The laughter, the silly conversations,
+                    the random moments, the beautiful days,
+                    the difficult days, and even the moments
+                    when things weren't perfect.
+
+                    <br><br>
+
+                    Somehow, through all of it,
+                    you became someone I could never
+                    simply call "just another person."
+
+                    <br><br>
+
+                    I wish I could be beside you today.
+                    I wish I could bring you flowers myself,
+                    look at your smile, and say
+                    "Happy Birthday, Babu"
+                    while you're standing right in front of me.
+
+                    <br><br>
+
+                    But distance has its own way of reminding
+                    us how much someone means to us.
+
+                    <br><br>
+
+                    Maybe we can't always be together.
+                    Maybe there are miles between us,
+                    different days, different moments,
+                    and sometimes life makes things complicated.
+
+                    <br><br>
+
+                    But there are some people who remain
+                    close to your heart no matter how far away
+                    they are.
+
+                    <br><br>
+
+                    And you're one of those people for me.
+
+                    <br><br>
+
+                    I don't know what the future has written
+                    for us, but I genuinely hope that life gives
+                    you everything your heart deserves.
+
+                    <br><br>
+
+                    I hope you keep smiling,
+                    keep chasing your dreams,
+                    and never forget how special you are.
+
+                    <br><br>
+
+                    And if someday we look back at these four years
+                    from a much happier and closer place,
+                    I hope we'll smile and say—
+
+                    <br><br>
+
+                    <em>
+                    "We really went through a lot,
+                    but look how far we've come."
+                    </em>
+
+                    <br><br>
+
+                    So today, forget everything for a while.
+
+                    Enjoy your day.
+                    Smile a little more.
+                    Take beautiful pictures.
+
+                    <br><br>
+
+                    And whenever you look at this message,
+                    remember that somewhere,
+                    someone is thinking about you
+                    and wishing that he could be there
+                    to celebrate your day with you.
+
+                    <br><br>
+
+                    <strong>
+                    Happy Birthday, Sabiha.<br>
+                    Happy Birthday, my Babu. ❤️
+                    </strong>
+
+                    <br><br>
+
+                    Four years of memories...<br>
+                    countless moments...<br>
+                    miles between us...
+
+                    <br><br>
+
+                    But somehow,
+                    still a little piece of my heart belongs to you.
+
+                    <br><br>
+
+                    May this new chapter of your life be
+                    softer, happier, and more beautiful
+                    than the last.
+
+                    <br><br>
+
+                    And one day,
+                    I hope I won't have to wish you
+                    through a screen anymore.
+
+                    <br><br>
+
+                    Until then...
+
+                    <br>
+
+                    Happy birthday to my favourite person
+                    to call "Babu." ❤️
+
+                    <br><br>
+
+                    — With love, always. 🌙
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <button class="btn" onclick="nextScreen()">
+            One last thing... ✨
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- SCREEN 6 -->
+
+<section class="screen" id="screen6">
+
+    <div class="content">
+
+        <div class="final-heart">
+            ❤️
+        </div>
+
+        <div class="small">
+            September 15
+        </div>
+
+        <h1 class="gradient">
+            Happy Birthday,<br>
+            Sabiha
+        </h1>
+
+        <h2>
+            My Babu ❤️
+        </h2>
+
+        <div class="quote">
+            “One day, I hope the distance
+            becomes nothing more than
+            a story we tell about how much
+            we loved each other from far away.”
+        </div>
+
+        <p>
+            Four years down.<br>
+            Hopefully, many beautiful chapters
+            still waiting for us.
+        </p>
+
+        <div class="signature">
+            — With love, always 🌙
+        </div>
+
+        <button class="btn" onclick="celebrate()">
+            One more surprise 🎉
+        </button>
+
+    </div>
+
+</section>
+
+
+<script>
+
+let currentScreen = 1;
+
+function nextScreen() {
+
+    document
+        .getElementById("screen" + currentScreen)
+        .classList.remove("active");
+
+    currentScreen++;
+
+    document
+        .getElementById("screen" + currentScreen)
+        .classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+function openLetter() {
+
+    const envelope =
+        document.getElementById("envelope");
+
+    envelope.classList.toggle("open");
+
+}
+
+
+function celebrate() {
+
+    for (let i = 0; i < 90; i++) {
+
+        const confetti =
+            document.createElement("div");
+
+        confetti.className = "confetti";
+
+        confetti.style.left =
+            Math.random() * 100 + "vw";
+
+        confetti.style.animationDuration =
+            (2 + Math.random() * 3) + "s";
+
+        confetti.style.animationDelay =
+            Math.random() * 1.5 + "s";
+
+        confetti.style.transform =
+            `rotate(${Math.random() * 360}deg)`;
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+            confetti.remove();
+        }, 6000);
+    }
+
+}
+
+</script>
+
+</body>
+</html>
